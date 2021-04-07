@@ -16,7 +16,9 @@
         </activity>
         <activity android:name=".HomeActivity" />
         <activity android:name=".LogInActivity" />
-        <activity android:name=".MainActivity" >
+        <activity android:name="ChooseTypeActivity" />
+        <activity android:name=".MainActivity" /> //추가
+        <activity android:name=".IntroActivity" > //mainactivity -> introactivity
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
