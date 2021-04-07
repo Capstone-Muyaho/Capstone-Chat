@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center|bottom"
-    tools:context=".SignInActivity">
+    tools:context=".LogInActivity">
 
     <ImageButton
         android:id="@+id/kakao_login_button"

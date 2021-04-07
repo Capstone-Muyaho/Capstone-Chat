@@ -8,11 +8,23 @@ import android.widget.Toast
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause.*
+import com.kakao.sdk.user.UserApiClient
+import kotlinx.android.synthetic.main.activity_log_in.*
 
-class SignInActivity : AppCompatActivity() {
+class LogInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
+        setContentView(R.layout.activity_log_in)
+
+        UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
+            if (error != null) {
+                Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
+            } else if (tokenInfo != null) {
+                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, LogoutActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            }
+        }
 
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
@@ -25,7 +37,7 @@ class SignInActivity : AppCompatActivity() {
                     }
                     error.toString() == InvalidGrant.toString() -> {
                         Toast.makeText(this, "인증 수단이 유효하지 않아 인증할 수 없는 상태", Toast.LENGTH_SHORT)
-                            .show()
+                                .show()
                     }
                     error.toString() == InvalidRequest.toString() -> {
                         Toast.makeText(this, "요청 파라미터 오류", Toast.LENGTH_SHORT).show()
@@ -35,7 +47,7 @@ class SignInActivity : AppCompatActivity() {
                     }
                     error.toString() == Misconfigured.toString() -> {
                         Toast.makeText(this, "설정이 올바르지 않음(android key hash)", Toast.LENGTH_SHORT)
-                            .show()
+                                .show()
                     }
                     error.toString() == ServerError.toString() -> {
                         Toast.makeText(this, "서버 내부 에러", Toast.LENGTH_SHORT).show()
@@ -50,11 +62,10 @@ class SignInActivity : AppCompatActivity() {
             } else if (token != null) {
                 Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
                 val secondIntent = Intent(this, LogoutActivity::class.java)
-                startActivity(secondIntent)
+                startActivity(secondIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
         }
 
-        val kakao_login_button : ImageButton = findViewById(R.id.kakao_login_button)
         kakao_login_button.setOnClickListener {
             if (LoginClient.instance.isKakaoTalkLoginAvailable(this)) {
                 LoginClient.instance.loginWithKakaoTalk(this, callback = callback)
