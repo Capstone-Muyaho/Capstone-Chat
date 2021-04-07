@@ -49,7 +49,7 @@ class SignInActivity : AppCompatActivity() {
                 }
             } else if (token != null) {
                 Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-                val secondIntent = Intent(this, SecondActivity::class.java)
+                val secondIntent = Intent(this, LogoutActivity::class.java)
                 startActivity(secondIntent)
             }
         }
