@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -42,4 +43,5 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation "com.kakao.sdk:v2-user:2.0.5" // 카카오 user(로그인, 사용자 관리) 모듈
 }
