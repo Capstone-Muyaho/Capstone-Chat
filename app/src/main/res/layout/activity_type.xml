@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="bottom"
-    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:weightSum="2"
+    android:gravity="center"
     tools:context=".ChooseTypeActivity">
 
     <ImageButton
@@ -14,17 +14,20 @@
         android:layout_height="430dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
+        android:background="@android:color/transparent"
         android:scaleType="fitCenter"
-        android:src="@drawable/grandma"
-        android:text="부모" />
+        android:src="@drawable/grandma" />
 
     <ImageButton
         android:id="@+id/btnSon"
         android:layout_width="220dp"
         android:layout_height="430dp"
         android:layout_weight="1"
+        android:background="@android:color/transparent"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:src="@drawable/father"
-        android:text="자녀" />
+        android:src="@drawable/father" />
+
+
+
 </LinearLayout>
