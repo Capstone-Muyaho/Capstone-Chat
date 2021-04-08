@@ -17,16 +17,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/nickname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="닉네임: "
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id" />
-
-    <TextView
         android:id="@+id/profileimage_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +24,7 @@
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nickname" />
+        app:layout_constraintTop_toBottomOf="@+id/id" />
 
     <TextView
         android:id="@+id/thumbnailimage_url"
@@ -45,6 +35,26 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileimage_url" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectedType"
+        android:text="유형: "
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thumbnailimage_url"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nickname"
+        android:text="닉네임 : "
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectedType"/>
 
     <Button
         android:id="@+id/kakao_logout_button"
