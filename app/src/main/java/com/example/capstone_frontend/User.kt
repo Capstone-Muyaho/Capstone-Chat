@@ -8,5 +8,4 @@ data class User(val userid: Long? = null,
                 val kakaoemail: String? = null,
                 val type: String? = null,
                 val agerange: String? = null) {
-
 }

@@ -4,10 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.user.UserApiClient
@@ -32,7 +30,7 @@ class ChooseTypeActivity : AppCompatActivity() {
                 ageRange = user.kakaoAccount?.ageRange.toString()  // 연령대
             }
         }
-        
+
         /*
         DB에 사용자 정보(Stype, inputNick)가 입력되어있는 경우 바로 MainActivity로 넘어간다.
         토큰 정보 가져온 뒤 해당 값(회원번호 또는 카카오 이메일) 이용해서 Stype, nickname 가져오기
@@ -95,7 +93,13 @@ class ChooseTypeActivity : AppCompatActivity() {
         }
     }
 
-    fun writeNewUser(userId: Long, nickname: String, email: String, type: String, ageRange: String) {
+    fun writeNewUser(
+        userId: Long,
+        nickname: String,
+        email: String,
+        type: String,
+        ageRange: String
+    ) {
         val db: DatabaseReference
         db = Firebase.database.reference
         val user = User(userId, nickname, email, type, ageRange)

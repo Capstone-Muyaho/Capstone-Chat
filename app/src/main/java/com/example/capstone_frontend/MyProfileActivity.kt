@@ -9,7 +9,6 @@ import android.widget.TextView
 import android.widget.Toast
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_my_profile.*
-import org.w3c.dom.Text
 
 class MyProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,12 +29,10 @@ class MyProfileActivity : AppCompatActivity() {
         val type = intent.getStringExtra("type")
         val nickName = intent.getStringExtra("nickName")
 
-        if (type == "P") {
-            tvType.setText("부모")
-        } else if (type == "C") {
-            tvType.setText("자녀")
-        } else {
-            Log.d("type", "부모-자녀 타입 오류")
+        when (type) {
+            "P" -> tvType.setText("부모")
+            "C" -> tvType.setText("자녀")
+            else -> Log.d("type", "부모-자녀 타입 입력 오류")
         }
 
         tvNickName.text = "닉네임: ${nickName}"

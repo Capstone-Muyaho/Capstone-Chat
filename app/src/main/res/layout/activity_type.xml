@@ -78,5 +78,4 @@
         android:text="전송"
         android:textSize="20dp" />
 
-
 </RelativeLayout>
