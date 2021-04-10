@@ -3,7 +3,7 @@ package com.example.capstone_frontend
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
+import android.util.Log
 import android.widget.Toast
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
@@ -18,9 +18,9 @@ class LogInActivity : AppCompatActivity() {
 
         UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
             if (error != null) {
-                Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
+                // Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
             } else if (tokenInfo != null) {
-                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
+                // Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, ChooseTypeActivity::class.java) //->LogoutActivity::class.java
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
@@ -61,12 +61,12 @@ class LogInActivity : AppCompatActivity() {
                 }
             } else if (token != null) {
                 Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-                val secondIntent = Intent(this, LogoutActivity::class.java)
-                startActivity(secondIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                val intent = Intent(this, ChooseTypeActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
         }
 
-        kakao_login_button.setOnClickListener {
+        btnKakaoLogin.setOnClickListener {
             if (LoginClient.instance.isKakaoTalkLoginAvailable(this)) {
                 LoginClient.instance.loginWithKakaoTalk(this, callback = callback)
             } else {

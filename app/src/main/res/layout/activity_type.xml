@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="2"
     android:gravity="top|bottom"
+    android:weightSum="2"
     tools:context=".ChooseTypeActivity">
 
     <ImageView
@@ -16,8 +16,7 @@
         android:adjustViewBounds="true"
         android:background="@drawable/buttonline"
         android:scaleType="fitCenter"
-        android:src="@drawable/grandma"
-       />
+        android:src="@drawable/grandma" />
 
     <ImageView
         android:id="@+id/imgSon"
@@ -30,34 +29,35 @@
         android:background="@drawable/buttonline"
         android:scaleType="fitCenter"
         android:src="@drawable/father" />
+
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="390dp"
+        android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
         <RadioButton
+            android:id="@+id/btnGrandma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnGrandma"
             android:text="부모"
             android:textColor="#0000ff"
-            android:textSize="40sp"/>
+            android:textSize="40sp" />
 
         <RadioButton
+            android:id="@+id/btnSon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnSon"
+            android:layout_marginLeft="100dp"
             android:text="자녀"
             android:textColor="#0000ff"
-            android:textSize="40sp"
-            android:layout_marginLeft="100dp" />
+            android:textSize="40sp" />
     </RadioGroup>
 
     <EditText
-        android:id="@+id/edit_nickN"
+        android:id="@+id/editNickName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="490dp"
@@ -68,13 +68,13 @@
         android:textSize="40sp" />
 
     <Button
+        android:id="@+id/btnNickName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnNick"
+        android:layout_below="@id/editNickName"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="25dp"
         android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@id/edit_nickN"
         android:text="전송"
         android:textSize="20dp" />
 

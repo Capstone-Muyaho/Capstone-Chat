@@ -8,7 +8,7 @@
     tools:context=".LogInActivity">
 
     <ImageButton
-        android:id="@+id/kakao_login_button"
+        android:id="@+id/btnKakaoLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
