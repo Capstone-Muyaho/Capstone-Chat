@@ -50,6 +50,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.7.0') // Firebase Android BoM
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-database-ktx' // Realtime Dataase library
+    implementation 'com.google.firebase:firebase-messaging:21.0.1' // Firebase Cloud Messaging module
 }
 
 apply plugin: 'com.android.application'

@@ -3,6 +3,13 @@
     package="com.example.capstone_frontend">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
 
     <application
         android:name=".GlobalApplication"
@@ -12,7 +19,9 @@
         android:roundIcon="@mipmap/ic_hyojason_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CapstoneFrontend">
-        <activity android:name=".ChildMainActivity"></activity>
+
+        <activity android:name=".SnaptalkActivity"></activity>
+        <activity android:name=".ChildMainActivity" />
         <activity android:name=".ParentMainActivity" />
         <activity android:name=".MyProfileActivity" />
         <activity android:name=".LogInActivity" />
@@ -36,6 +45,21 @@
                     android:scheme="kakao5bec60bab0b4893040677633105f1a77" />
             </intent-filter>
         </activity>
+
+        <!-- Add FCM Service -->
+        <service android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

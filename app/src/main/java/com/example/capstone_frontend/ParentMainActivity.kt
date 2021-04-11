@@ -3,6 +3,7 @@ package com.example.capstone_frontend
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_parent_main.*
 
 class ParentMainActivity : AppCompatActivity() {
@@ -19,5 +20,13 @@ class ParentMainActivity : AppCompatActivity() {
             intent.putExtra("nickName", nickName)
             startActivity(intent)
         }
+
+        /*Push messages*/
+        val test: MyFirebaseInstanceIDService = MyFirebaseInstanceIDService()
+        test.onTokenRefresh()
+        Log.d(
+            "FCM Message TEST",
+            "REFRESHED TOKEN IS RIGHT ABOVE !!!"
+        )
     }
 }

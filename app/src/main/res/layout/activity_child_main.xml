@@ -6,6 +6,21 @@
     android:orientation="vertical"
     tools:context=".ChildMainActivity">
 
+    <TextView
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="메뉴"
+        android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/btnSnaptalk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="스냅톡"
+        android:textSize="20sp" />
+
     <Button
         android:id="@+id/btnMyProfile"
         android:layout_width="match_parent"

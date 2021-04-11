@@ -9,6 +9,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.user.UserApiClient
+import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.activity_type.*
 
 class ChooseTypeActivity : AppCompatActivity() {
@@ -17,19 +18,12 @@ class ChooseTypeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_type)
 
-        var id = -1L
+        val db: DatabaseReference = Firebase.database.reference
+        var id = "null"
         var email = "null"
         var ageRange = "null"
-
-        UserApiClient.instance.me { user, error ->
-            if (error != null) {
-                Log.e("TAG", "사용자 정보 요청 실패", error)
-            } else if (user != null) {
-                id = user.id    // 회원번호
-                email = user.kakaoAccount?.email.toString()   // 카카오 계정
-                ageRange = user.kakaoAccount?.ageRange.toString()  // 연령대
-            }
-        }
+        var type: String
+        var nickName: String
 
         /*
         DB에 사용자 정보(Stype, inputNick)가 입력되어있는 경우 바로 MainActivity로 넘어간다.
@@ -55,9 +49,22 @@ class ChooseTypeActivity : AppCompatActivity() {
         } else { 아래 전체 내용
          */
 
-//        val editText = findViewById<EditText>(R.id.edit_nickN)
-        var type: String
-        var nickName: String
+        UserApiClient.instance.me { user, error ->
+            if (error != null) {
+                Log.e("TAG", "사용자 정보 요청 실패", error)
+            } else if (user != null) {
+                id = user.id.toString()    // 회원번호
+                email = user.kakaoAccount?.email.toString()   // 카카오 계정
+                ageRange = user.kakaoAccount?.ageRange.toString()  // 연령대
+                Log.d("firebase", id)
+            }
+        }
+
+        db.child("users").child(id).get().addOnSuccessListener {
+            Log.i("firebase", "Got value ${it.value}")
+        }.addOnFailureListener {
+            Log.e("firebase", "Error getting data", it)
+        }
 
         btnGrandma.setOnClickListener {
             type = "P"
@@ -66,7 +73,7 @@ class ChooseTypeActivity : AppCompatActivity() {
                 nickName = editNickName.text.toString()
                 // Toast.makeText(this@ChooseTypeActivity, inputNick, Toast.LENGTH_SHORT).show()
 
-                writeNewUser(id, nickName, email, type, ageRange) // DB에 회원정보 저장
+                writeNewUser(id, nickName, email, type, ageRange, db) // DB에 회원정보 저장
 
                 val intent = Intent(this, ParentMainActivity::class.java)
                 intent.putExtra("type", type)
@@ -83,7 +90,7 @@ class ChooseTypeActivity : AppCompatActivity() {
                 nickName = editNickName.text.toString()
                 // Toast.makeText(this@ChooseTypeActivity, inputNick, Toast.LENGTH_SHORT).show()
 
-                writeNewUser(id, nickName, email, type, ageRange) // DB에 회원정보 저장
+                writeNewUser(id, nickName, email, type, ageRange, db) // DB에 회원정보 저장
 
                 val intent = Intent(this, ChildMainActivity::class.java)
                 intent.putExtra("type", type)
@@ -94,16 +101,14 @@ class ChooseTypeActivity : AppCompatActivity() {
     }
 
     fun writeNewUser(
-        userId: Long,
+        userId: String,
         nickname: String,
         email: String,
         type: String,
-        ageRange: String
+        ageRange: String,
+        db: DatabaseReference
     ) {
-        val db: DatabaseReference
-        db = Firebase.database.reference
         val user = User(userId, nickname, email, type, ageRange)
-
-        db.child("users").child(nickname).setValue(user)
+        db.child("users").child(userId).setValue(user)
     }
 }

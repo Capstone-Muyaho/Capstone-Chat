@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_my_profile.*
 
@@ -15,10 +18,13 @@ class MyProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_profile)
 
+        var id = "null"
+
         UserApiClient.instance.me { user, error ->
             if (error != null) {
                 Log.e("TAG", "사용자 정보 요청 실패", error)
             } else if (user != null) {
+                id = user.id.toString()
                 kakaoEmail.text = "이메일: ${user?.kakaoAccount?.email}"
             }
         }
@@ -50,6 +56,9 @@ class MyProfileActivity : AppCompatActivity() {
         }
 
         btnKakaoUnlink.setOnClickListener {
+            val db: DatabaseReference = Firebase.database.reference
+            db.child("users").child(id).removeValue()
+
             UserApiClient.instance.unlink { error ->
                 if (error != null) {
                     Toast.makeText(this, "회원 탈퇴 실패 $error", Toast.LENGTH_SHORT).show()
