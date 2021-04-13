@@ -9,7 +9,7 @@
     tools:context=".ChooseTypeActivity">
 
     <ImageView
-        android:id="@+id/imgGrandma"
+        android:id="@+id/img_grandma"
         android:layout_width="200dp"
         android:layout_height="370dp"
         android:layout_weight="1"
@@ -19,11 +19,11 @@
         android:src="@drawable/grandma" />
 
     <ImageView
-        android:id="@+id/imgSon"
+        android:id="@+id/img_son"
         android:layout_width="220dp"
         android:layout_height="370dp"
         android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@id/imgGrandma"
+        android:layout_toRightOf="@id/img_grandma"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/buttonline"
@@ -39,7 +39,7 @@
         android:paddingRight="10dp">
 
         <RadioButton
-            android:id="@+id/btnGrandma"
+            android:id="@+id/btn_grandma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="부모"
@@ -47,7 +47,7 @@
             android:textSize="40sp" />
 
         <RadioButton
-            android:id="@+id/btnSon"
+            android:id="@+id/btn_son"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
@@ -57,7 +57,7 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/editNickName"
+        android:id="@+id/edit_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="490dp"
@@ -71,7 +71,7 @@
         android:id="@+id/btnNickName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editNickName"
+        android:layout_below="@id/edit_nickname"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="25dp"
         android:layout_marginRight="10dp"

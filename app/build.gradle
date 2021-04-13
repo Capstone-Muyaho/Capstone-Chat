@@ -51,6 +51,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-database-ktx' // Realtime Dataase library
     implementation 'com.google.firebase:firebase-messaging:21.0.1' // Firebase Cloud Messaging module
+    implementation 'gun0912.ted:tedpermission:2.2.3' // 권한 판업 구현
 }
 
 apply plugin: 'com.android.application'

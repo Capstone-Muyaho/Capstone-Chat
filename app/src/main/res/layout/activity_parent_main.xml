@@ -15,21 +15,21 @@
         android:textSize="50sp" />
 
     <Button
-        android:id="@+id/btnSnaptalk"
+        android:id="@+id/btn_snaptalk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="스냅톡"
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnEmergencyCall"
+        android:id="@+id/btnE_emergency_call"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="긴급 전화"
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnMyProfile"
+        android:id="@+id/btn_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="내 정보 보기"

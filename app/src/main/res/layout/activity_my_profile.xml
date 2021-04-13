@@ -7,7 +7,7 @@
     tools:context=".MyProfileActivity">
 
     <TextView
-        android:id="@+id/kakaoEmail"
+        android:id="@+id/tv_kakao_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="이메일: "
@@ -17,37 +17,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvType"
+        android:id="@+id/tv_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="유형: "
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kakaoEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_kakao_email" />
 
     <TextView
-        android:id="@+id/tvNickName"
+        android:id="@+id/tv_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="닉네임 : "
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvType" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_type" />
 
     <Button
-        android:id="@+id/btnKakaoLogout"
+        android:id="@+id/btn_kakao_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="로그아웃"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnKakaoUnlink"
+        app:layout_constraintBottom_toTopOf="@+id/btn_kakao_unlink"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
-        android:id="@+id/btnKakaoUnlink"
+        android:id="@+id/btn_kakao_unlink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="회원 탈퇴"

@@ -25,30 +25,6 @@ class ChooseTypeActivity : AppCompatActivity() {
         var type: String
         var nickName: String
 
-        /*
-        DB에 사용자 정보(Stype, inputNick)가 입력되어있는 경우 바로 MainActivity로 넘어간다.
-        토큰 정보 가져온 뒤 해당 값(회원번호 또는 카카오 이메일) 이용해서 Stype, nickname 가져오기
-        UserApiClient.instance.me { user, error ->
-            if (error != null) {
-                Log.e("TAG", "사용자 정보 요청 실패", error)
-            } else if (user != null) {
-                id = user.idS
-            }
-        }
-
-        if
-            val intent = Intent(this, ParentMainActivity::class.java)
-                intent.putExtra("type", Stype)
-                intent.putExtra("nickname", inputNick)
-                startActivity(intent)
-        } else if (Stype == "C") {
-            val intent = Intent(this, ChildMainActivity::class.java)
-                intent.putExtra("type", Stype)
-                intent.putExtra("nickname", inputNick)
-                startActivity(intent)
-        } else { 아래 전체 내용
-         */
-
         UserApiClient.instance.me { user, error ->
             if (error != null) {
                 Log.e("TAG", "사용자 정보 요청 실패", error)
@@ -66,41 +42,41 @@ class ChooseTypeActivity : AppCompatActivity() {
             Log.e("firebase", "Error getting data", it)
         }
 
-        btnGrandma.setOnClickListener {
+        btn_grandma.setOnClickListener {
             type = "P"
             // Toast.makeText(applicationContext, Stype, Toast.LENGTH_SHORT).show()
             btnNickName.setOnClickListener {
-                nickName = editNickName.text.toString()
+                nickName = edit_nickname.text.toString()
                 // Toast.makeText(this@ChooseTypeActivity, inputNick, Toast.LENGTH_SHORT).show()
 
-                writeNewUser(id, nickName, email, type, ageRange, db) // DB에 회원정보 저장
+                writeNewUser(id, nickName, email, type, ageRange, db)
 
-                val intent = Intent(this, ParentMainActivity::class.java)
-                intent.putExtra("type", type)
-                intent.putExtra("nickName", nickName)
-                startActivity(intent)
+                val parentIntent = Intent(this, ParentMainActivity::class.java)
+                parentIntent.putExtra("type", type)
+                parentIntent.putExtra("nickName", nickName)
+                startActivity(parentIntent)
             }
         }
 
-        btnSon.setOnClickListener {
+        btn_son.setOnClickListener {
             type = "C"
             // Toast.makeText(applicationContext, Stype, Toast.LENGTH_SHORT).show()
 
             btnNickName.setOnClickListener {
-                nickName = editNickName.text.toString()
+                nickName = edit_nickname.text.toString()
                 // Toast.makeText(this@ChooseTypeActivity, inputNick, Toast.LENGTH_SHORT).show()
 
-                writeNewUser(id, nickName, email, type, ageRange, db) // DB에 회원정보 저장
+                writeNewUser(id, nickName, email, type, ageRange, db)
 
-                val intent = Intent(this, ChildMainActivity::class.java)
-                intent.putExtra("type", type)
-                intent.putExtra("nickName", nickName)
-                startActivity(intent)
+                val childIntent = Intent(this, ChildMainActivity::class.java)
+                childIntent.putExtra("type", type)
+                childIntent.putExtra("nickName", nickName)
+                startActivity(childIntent)
             }
         }
     }
 
-    fun writeNewUser(
+    private fun writeNewUser(
         userId: String,
         nickname: String,
         email: String,

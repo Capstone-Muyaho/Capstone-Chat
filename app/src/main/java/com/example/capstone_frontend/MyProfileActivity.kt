@@ -25,12 +25,12 @@ class MyProfileActivity : AppCompatActivity() {
                 Log.e("TAG", "사용자 정보 요청 실패", error)
             } else if (user != null) {
                 id = user.id.toString()
-                kakaoEmail.text = "이메일: ${user?.kakaoAccount?.email}"
+                tv_kakao_email.text = "이메일: ${user?.kakaoAccount?.email}"
             }
         }
 
-        var tvType = findViewById(R.id.tvType) as TextView
-        val tvNickName = findViewById(R.id.tvNickName) as TextView
+        var tvType = findViewById(R.id.tv_type) as TextView
+        val tvNickName = findViewById(R.id.tv_nickname) as TextView
 
         val type = intent.getStringExtra("type")
         val nickName = intent.getStringExtra("nickName")
@@ -43,7 +43,7 @@ class MyProfileActivity : AppCompatActivity() {
 
         tvNickName.text = "닉네임: ${nickName}"
 
-        btnKakaoLogout.setOnClickListener {
+        btn_kakao_logout.setOnClickListener {
             UserApiClient.instance.logout { error ->
                 if (error != null) {
                     Toast.makeText(this, "로그아웃 실패 $error", Toast.LENGTH_SHORT).show()
@@ -55,7 +55,7 @@ class MyProfileActivity : AppCompatActivity() {
             }
         }
 
-        btnKakaoUnlink.setOnClickListener {
+        btn_kakao_unlink.setOnClickListener {
             val db: DatabaseReference = Firebase.database.reference
             db.child("users").child(id).removeValue()
 

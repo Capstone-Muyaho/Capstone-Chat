@@ -14,11 +14,20 @@ class ParentMainActivity : AppCompatActivity() {
         val type = intent.getStringExtra("type")
         val nickName = intent.getStringExtra("nickName")
 
-        btnMyProfile.setOnClickListener {
-            val intent = Intent(this, MyProfileActivity::class.java)
-            intent.putExtra("type", type)
-            intent.putExtra("nickName", nickName)
-            startActivity(intent)
+        btn_profile.setOnClickListener {
+            val profileIntent = Intent(this, MyProfileActivity::class.java)
+            profileIntent.putExtra("type", type)
+            profileIntent.putExtra("nickName", nickName)
+            startActivity(profileIntent)
+        }
+
+        btn_snaptalk.setOnClickListener {
+            val snapTalkIntent = Intent(this, SnaptalkActivity::class.java)
+            startActivity(snapTalkIntent)
+        }
+
+        btnE_emergency_call.setOnClickListener {
+
         }
 
         /*Push messages*/
