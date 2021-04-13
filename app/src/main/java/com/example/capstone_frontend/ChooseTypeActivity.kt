@@ -75,7 +75,7 @@ class ChooseTypeActivity : AppCompatActivity() {
             }
         }
     }
-
+//asdsad
     private fun writeNewUser(
         userId: String,
         nickname: String,
