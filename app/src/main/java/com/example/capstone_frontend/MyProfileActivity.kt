@@ -25,7 +25,6 @@ class MyProfileActivity : AppCompatActivity() {
                 Log.e("TAG", "사용자 정보 요청 실패", error)
             } else if (user != null) {
                 id = user.id.toString()
-                tv_kakao_email.text = "이메일: ${user?.kakaoAccount?.email}"
             }
         }
 
