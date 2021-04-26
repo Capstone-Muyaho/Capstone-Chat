@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.user.UserApiClient
-import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.activity_type.*
 
 class ChooseTypeActivity : AppCompatActivity() {
@@ -42,12 +42,25 @@ class ChooseTypeActivity : AppCompatActivity() {
             Log.e("firebase", "Error getting data", it)
         }
 
-        btn_grandma.setOnClickListener {
+        btn_nickname.setOnClickListener {
+            when(type_group.checkedRadioButtonId) {
+                R.id.btn_grandpa -> tv.text = "부모로 설정\n"
+                R.id.btn_daughter -> tv.text = "자녀로 설정\n"
+            }
+        }
+
+        type_group.setOnCheckedChangeListener(CheckboxListener())
+        type_group.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.btn_grandpa -> tv.text = "'부모'를 선택하셨습니다."
+                R.id.btn_daughter -> tv.text = "'자녀'를 선택하셨습니다."
+            }
+        }
+
+        btn_grandpa.setOnClickListener {
             type = "P"
-            // Toast.makeText(applicationContext, Stype, Toast.LENGTH_SHORT).show()
-            btnNickName.setOnClickListener {
+            btn_nickname.setOnClickListener {
                 nickName = edit_nickname.text.toString()
-                // Toast.makeText(this@ChooseTypeActivity, inputNick, Toast.LENGTH_SHORT).show()
 
                 writeNewUser(id, nickName, email, type, ageRange, db)
 
@@ -58,13 +71,11 @@ class ChooseTypeActivity : AppCompatActivity() {
             }
         }
 
-        btn_son.setOnClickListener {
+        btn_daughter.setOnClickListener {
             type = "C"
-            // Toast.makeText(applicationContext, Stype, Toast.LENGTH_SHORT).show()
 
-            btnNickName.setOnClickListener {
+            btn_nickname.setOnClickListener {
                 nickName = edit_nickname.text.toString()
-                // Toast.makeText(this@ChooseTypeActivity, inputNick, Toast.LENGTH_SHORT).show()
 
                 writeNewUser(id, nickName, email, type, ageRange, db)
 
@@ -72,6 +83,18 @@ class ChooseTypeActivity : AppCompatActivity() {
                 childIntent.putExtra("type", type)
                 childIntent.putExtra("nickName", nickName)
                 startActivity(childIntent)
+            }
+        }
+    }
+
+    inner class CheckboxListener: RadioGroup.OnCheckedChangeListener {
+        override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+            when(group?.id) {
+                R.id.type_group ->
+                    when(checkedId) {
+                        R.id.btn_grandpa -> tv.text = "부모 설정"
+                        R.id.btn_daughter -> tv.text = "자녀 설정"
+                    }
             }
         }
     }

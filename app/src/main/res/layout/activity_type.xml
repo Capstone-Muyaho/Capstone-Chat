@@ -1,66 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/myinfo1"
     android:gravity="top|bottom"
     android:weightSum="2"
     tools:context=".ChooseTypeActivity">
 
     <ImageView
-        android:id="@+id/img_grandma"
-        android:layout_width="200dp"
+        android:id="@+id/img_grandpa"
+        android:layout_width="180dp"
         android:layout_height="370dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/buttonline"
         android:scaleType="fitCenter"
-        android:src="@drawable/grandma" />
+        android:src="@drawable/grandfather" />
 
     <ImageView
-        android:id="@+id/img_son"
-        android:layout_width="220dp"
+        android:id="@+id/img_daughter"
+        android:layout_width="200dp"
         android:layout_height="370dp"
         android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@id/img_grandma"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:layout_toRightOf="@id/img_grandpa"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/buttonline"
         android:scaleType="fitCenter"
-        android:src="@drawable/father" />
+        android:src="@drawable/mother" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="485dp"
+        android:gravity="center"
+        android:text="유형 설정"
+        android:textColor="#FF607F"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <RadioGroup
+        android:id="@+id/type_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="390dp"
+        android:layout_marginTop="430dp"
         android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
         <RadioButton
-            android:id="@+id/btn_grandma"
+            android:id="@+id/btn_grandpa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="부모"
-            android:textColor="#0000ff"
-            android:textSize="40sp" />
+            android:textColor="#53584C"
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/btn_son"
+            android:id="@+id/btn_daughter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:text="자녀"
-            android:textColor="#0000ff"
-            android:textSize="40sp" />
+            android:textColor="#53584C"
+            android:textSize="40sp"
+            android:textStyle="bold" />
     </RadioGroup>
 
     <EditText
         android:id="@+id/edit_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="490dp"
+        android:layout_marginTop="535dp"
         android:gravity="center"
         android:hint="별명을 입력해주세요."
         android:maxLength="10"
@@ -68,14 +86,16 @@
         android:textSize="40sp" />
 
     <Button
-        android:id="@+id/btnNickName"
+        android:id="@+id/btn_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_nickname"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="10dp"
+        android:backgroundTint="#97A884"
         android:text="전송"
+        android:textColor="#E7C794"
         android:textSize="20dp" />
 
 </RelativeLayout>

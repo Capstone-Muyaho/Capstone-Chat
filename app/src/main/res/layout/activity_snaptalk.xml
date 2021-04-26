@@ -5,7 +5,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B2E7C794"
+    android:background="@drawable/myinfo1"
     tools:context=".SnaptalkActivity">
 
     <Button
