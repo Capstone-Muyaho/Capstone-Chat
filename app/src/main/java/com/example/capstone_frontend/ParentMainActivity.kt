@@ -1,6 +1,7 @@
 package com.example.capstone_frontend
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -26,8 +27,14 @@ class ParentMainActivity : AppCompatActivity() {
             startActivity(snapTalkIntent)
         }
 
-        btnE_emergency_call.setOnClickListener {
-
+        btn_emergency_call.setOnClickListener {
+            try {
+                var callIntent = Intent(Intent.ACTION_CALL)
+                callIntent.setData(Uri.parse("tel:01033240588"))
+                startActivity(callIntent)
+            } catch (e: Exception) {
+                Log.d("call", "전화 실패")   
+            }
         }
 
         /*Push messages*/
