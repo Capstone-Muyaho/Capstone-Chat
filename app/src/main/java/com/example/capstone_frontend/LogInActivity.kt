@@ -22,29 +22,6 @@ class LogInActivity : AppCompatActivity() {
             } else if (tokenInfo != null) {
                 // Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
 
-                /*
-        DB에 사용자 정보(Stype, inputNick)가 입력되어있는 경우 바로 MainActivity로 넘어간다.
-        토큰 정보 가져온 뒤 해당 값(회원번호 또는 카카오 이메일) 이용해서 Stype, nickname 가져오기
-        UserApiClient.instance.me { user, error ->
-            if (error != null) {
-                Log.e("TAG", "사용자 정보 요청 실패", error)
-            } else if (user != null) {
-                id = user.idS
-            }
-        }
-
-        if
-            val intent = Intent(this, ParentMainActivity::class.java)
-                intent.putExtra("type", Stype)
-                intent.putExtra("nickname", inputNick)
-                startActivity(intent)
-        } else if (Stype == "C") {
-            val intent = Intent(this, ChildMainActivity::class.java)
-                intent.putExtra("type", Stype)
-                intent.putExtra("nickname", inputNick)
-                startActivity(intent)
-        } else { 아래 전체 내용
-         */
                 val intent = Intent(this, ChooseTypeActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
