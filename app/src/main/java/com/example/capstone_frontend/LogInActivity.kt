@@ -22,7 +22,6 @@ class LogInActivity : AppCompatActivity() {
 
         val db: DatabaseReference = Firebase.database.getReference("users")
 
-        // 이미 로그인이 되어있는 경우
         UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
             if (error != null) {
                 Log.e("Token", "토큰 정보 보기 실패")
