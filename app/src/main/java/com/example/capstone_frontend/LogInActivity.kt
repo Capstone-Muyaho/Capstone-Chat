@@ -3,7 +3,12 @@ package com.example.capstone_frontend
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
+import android.util.Log
 import android.widget.Toast
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause.*
@@ -15,15 +20,51 @@ class LogInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
 
+        val db: DatabaseReference = Firebase.database.getReference("users")
+
         // 이미 로그인이 되어있는 경우
         UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
             if (error != null) {
-                // Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
+                Log.e("Token", "토큰 정보 보기 실패")
             } else if (tokenInfo != null) {
-                // Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
+                Log.d("Token", "토큰 정보 보기 성공")
 
                 val intent = Intent(this, ChooseTypeActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+
+                UserApiClient.instance.me { user, error ->
+                    if (error != null) {
+                        Log.e("TAG", "사용자 정보 요청 실패", error)
+                    } else if (user != null) {
+                        val id = user.id.toString()
+
+                        db.child(id).child("type").get().addOnSuccessListener {
+                            val type = it.value.toString()
+                            db.child(id).child("nickname").get().addOnSuccessListener {
+                                val nickName = it.value.toString()
+
+                                if (type == "P" && nickName != "") {
+                                    val parentIntent = Intent(this, ParentMainActivity::class.java)
+                                    parentIntent.putExtra("type", type)
+                                    parentIntent.putExtra("nickName", nickName)
+                                    startActivity(parentIntent)
+                                } else if (type == "C" && nickName != "") {
+                                    val childIntent = Intent(this, ChildMainActivity::class.java)
+                                    childIntent.putExtra("type", type)
+                                    childIntent.putExtra("nickName", nickName)
+                                    startActivity(childIntent)
+                                } else {
+                                    val intent = Intent(this, ChooseTypeActivity::class.java)
+                                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                                }
+                            }.addOnFailureListener {
+                                Log.e("firebase", "Error getting data", it)
+                            }
+                        }.addOnFailureListener {
+                            Log.e("firebase", "Error getting data", it)
+                        }
+                    }
+                }
             }
         }
 

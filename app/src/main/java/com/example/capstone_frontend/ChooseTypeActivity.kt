@@ -19,9 +19,6 @@ class ChooseTypeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_type)
 
         val db: DatabaseReference = Firebase.database.reference
-        var id = "null"
-        var email = "null"
-        var ageRange = "null"
         var type: String
         var nickName: String
 
@@ -29,60 +26,54 @@ class ChooseTypeActivity : AppCompatActivity() {
             if (error != null) {
                 Log.e("TAG", "사용자 정보 요청 실패", error)
             } else if (user != null) {
-                id = user.id.toString()    // 회원번호
-                email = user.kakaoAccount?.email.toString()   // 카카오 계정
-                ageRange = user.kakaoAccount?.ageRange.toString()  // 연령대
-                Log.d("firebase", id)
-            }
-        }
+                val id = user.id.toString()    // 회원번호
+                val email = user.kakaoAccount?.email.toString()   // 카카오 계정
+                val ageRange = user.kakaoAccount?.ageRange.toString()  // 연령대
 
-        db.child("users").child(id).get().addOnSuccessListener {
-            Log.i("firebase", "Got value ${it.value}")
-        }.addOnFailureListener {
-            Log.e("firebase", "Error getting data", it)
-        }
 
-        btn_nickname.setOnClickListener {
-            when(type_group.checkedRadioButtonId) {
-                R.id.btn_grandpa -> tv.text = "부모로 설정\n"
-                R.id.btn_daughter -> tv.text = "자녀로 설정\n"
-            }
-        }
+                btn_nickname.setOnClickListener {
+                    when (type_group.checkedRadioButtonId) {
+                        R.id.btn_grandpa -> tv.text = "부모로 설정\n"
+                        R.id.btn_daughter -> tv.text = "자녀로 설정\n"
+                    }
+                }
 
-        type_group.setOnCheckedChangeListener(CheckboxListener())
-        type_group.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                R.id.btn_grandpa -> tv.text = "'부모'를 선택하셨습니다."
-                R.id.btn_daughter -> tv.text = "'자녀'를 선택하셨습니다."
-            }
-        }
+                type_group.setOnCheckedChangeListener(CheckboxListener())
+                type_group.setOnCheckedChangeListener { group, checkedId ->
+                    when (checkedId) {
+                        R.id.btn_grandpa -> tv.text = "'부모'를 선택하셨습니다."
+                        R.id.btn_daughter -> tv.text = "'자녀'를 선택하셨습니다."
+                    }
+                }
 
-        btn_grandpa.setOnClickListener {
-            type = "P"
-            btn_nickname.setOnClickListener {
-                nickName = edit_nickname.text.toString()
+                btn_grandpa.setOnClickListener {
+                    type = "P"
+                    btn_nickname.setOnClickListener {
+                        nickName = edit_nickname.text.toString()
 
-                writeNewUser(id, nickName, email, type, ageRange, db)
+                        writeNewUser(id, nickName, email, type, ageRange, db)
 
-                val parentIntent = Intent(this, ParentMainActivity::class.java)
-                parentIntent.putExtra("type", type)
-                parentIntent.putExtra("nickName", nickName)
-                startActivity(parentIntent)
-            }
-        }
+                        val parentIntent = Intent(this, ParentMainActivity::class.java)
+                        parentIntent.putExtra("type", type)
+                        parentIntent.putExtra("nickName", nickName)
+                        startActivity(parentIntent)
+                    }
+                }
 
-        btn_daughter.setOnClickListener {
-            type = "C"
+                btn_daughter.setOnClickListener {
+                    type = "C"
 
-            btn_nickname.setOnClickListener {
-                nickName = edit_nickname.text.toString()
+                    btn_nickname.setOnClickListener {
+                        nickName = edit_nickname.text.toString()
 
-                writeNewUser(id, nickName, email, type, ageRange, db)
+                        writeNewUser(id, nickName, email, type, ageRange, db)
 
-                val childIntent = Intent(this, ChildMainActivity::class.java)
-                childIntent.putExtra("type", type)
-                childIntent.putExtra("nickName", nickName)
-                startActivity(childIntent)
+                        val childIntent = Intent(this, ChildMainActivity::class.java)
+                        childIntent.putExtra("type", type)
+                        childIntent.putExtra("nickName", nickName)
+                        startActivity(childIntent)
+                    }
+                }
             }
         }
     }

@@ -89,7 +89,7 @@
         android:backgroundTint="#0097A884"
         android:fontFamily="@font/gyeonggi_title_medium"
         android:text="회원 탈퇴"
-        android:textColor="#97A884"
+        android:textColor="#E7C794"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
