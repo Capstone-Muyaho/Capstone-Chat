@@ -1,8 +1,12 @@
 package com.example.capstone_frontend
 
 import android.util.Log
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.FirebaseInstanceIdService
+import com.google.firebase.ktx.Firebase
+import com.kakao.sdk.user.UserApiClient
 
 class MyFirebaseInstanceIDService : FirebaseInstanceIdService() {
     /**
@@ -27,7 +31,18 @@ class MyFirebaseInstanceIDService : FirebaseInstanceIdService() {
     /**
      * token 값을 서버에 등록할 때 사용  */
     private fun sendRegistrationToServer(token: String?) {
-        //  TODO: Implement this method to send token to your app server.
+        val db: DatabaseReference = Firebase.database.getReference("users")
+
+        UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
+            if (tokenInfo != null) {
+                UserApiClient.instance.me { user, error ->
+                    if (user != null) {
+                        val id = user.id.toString()
+                        db.child(id).child("token").setValue(token)
+                    }
+                }
+            }
+        }
     }
 
     companion object {
