@@ -123,8 +123,8 @@ class AddFriendsActivity : AppCompatActivity() {
         permission: String,
         db: DatabaseReference
     ) {
-        val friend = Friends(user1, user2, permission)
         val chatroom = user1 + "-" + user2
+        val friend = Friends(user1, user2, permission, chatroom)
         db.child("friends").child(chatroom).setValue(friend)
     }
 }
