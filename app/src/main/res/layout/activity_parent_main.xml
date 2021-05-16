@@ -18,7 +18,7 @@
         android:text="메뉴"
         android:textSize="50sp"
         android:fontFamily="@font/gyeonggi_batang_bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnE_emergency_call"
+        app:layout_constraintBottom_toTopOf="@+id/btn_emergency_call"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,12 +31,12 @@
         android:layout_height="120dp"
         android:layout_marginTop="200dp"
         android:backgroundTint="#97A884"
+        android:fontFamily="@font/gyeonggi_title_medium"
         android:text="내 정보 보기"
         android:textColor="#E7C794"
         android:textSize="30sp"
-        android:fontFamily="@font/gyeonggi_title_medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/menu" />
 

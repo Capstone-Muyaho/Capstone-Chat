@@ -6,9 +6,12 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 카메라 접근 권한 -->
-    <uses-permission android:name="android.permission.READ_CONTACTS" /> <!-- 전화번호 읽기 권한 -->
     <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- 전화 걸기 권한 -->
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <!-- <uses-permission android:name="android.permission.READ_CONTACTS" /> 전화번호 읽기 권한 -->
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:name=".GlobalApplication"
@@ -18,8 +21,8 @@
         android:roundIcon="@mipmap/ic_hyojason_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CapstoneFrontend">
-
-        <activity android:name=".SnaptalkActivity"></activity>
+        <activity android:name=".AddFriendsActivity"></activity>
+        <activity android:name=".SnaptalkActivity" />
         <activity android:name=".ChildMainActivity" />
         <activity android:name=".ParentMainActivity" />
         <activity android:name=".MyProfileActivity" />
@@ -32,7 +35,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -44,7 +46,6 @@
                     android:host="oauth"
                     android:scheme="kakao5bec60bab0b4893040677633105f1a77" />
             </intent-filter>
-
         </activity> <!-- Add FCM Service -->
         <service android:name=".MyFirebaseInstanceIDService">
             <intent-filter>
@@ -58,10 +59,7 @@
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-
-        </service>
-
-        <!-- 카메라 기능 관련 Provider -->
+        </service> <!-- 카메라 기능 관련 Provider -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.capstone_frontend.fileprovider"

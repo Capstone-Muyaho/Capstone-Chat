@@ -42,6 +42,11 @@ class MyProfileActivity : AppCompatActivity() {
 
         tvNickName.text = "닉네임: ${nickName}"
 
+        btn_intent_add_friend.setOnClickListener() {
+            val friendIntent = Intent(this, AddFriendsActivity::class.java)
+            startActivity(friendIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
+        }
+
         btn_kakao_logout.setOnClickListener {
             UserApiClient.instance.logout { error ->
                 if (error != null) {

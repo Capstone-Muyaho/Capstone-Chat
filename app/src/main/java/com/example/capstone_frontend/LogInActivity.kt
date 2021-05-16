@@ -28,33 +28,32 @@ class LogInActivity : AppCompatActivity() {
             } else if (tokenInfo != null) {
                 Log.d("Token", "토큰 정보 보기 성공")
 
-                val intent = Intent(this, ChooseTypeActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-
                 UserApiClient.instance.me { user, error ->
                     if (error != null) {
                         Log.e("TAG", "사용자 정보 요청 실패", error)
                     } else if (user != null) {
                         val id = user.id.toString()
+                        Log.d("what", "사용자 정보 요청 성공")
 
                         db.child(id).child("type").get().addOnSuccessListener {
                             val type = it.value.toString()
+
                             db.child(id).child("nickname").get().addOnSuccessListener {
                                 val nickName = it.value.toString()
 
-                                if (type == "P" && nickName != "") {
+                                if (type == "P" && nickName != null) {
                                     val parentIntent = Intent(this, ParentMainActivity::class.java)
                                     parentIntent.putExtra("type", type)
                                     parentIntent.putExtra("nickName", nickName)
                                     startActivity(parentIntent)
-                                } else if (type == "C" && nickName != "") {
+                                } else if (type == "C" && nickName != null) {
                                     val childIntent = Intent(this, ChildMainActivity::class.java)
                                     childIntent.putExtra("type", type)
                                     childIntent.putExtra("nickName", nickName)
                                     startActivity(childIntent)
                                 } else {
                                     val intent = Intent(this, ChooseTypeActivity::class.java)
-                                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                                    startActivity(intent)
                                 }
                             }.addOnFailureListener {
                                 Log.e("firebase", "Error getting data", it)
@@ -100,10 +99,6 @@ class LogInActivity : AppCompatActivity() {
                         Toast.makeText(this, "기타 에러", Toast.LENGTH_SHORT).show()
                     }
                 }
-            } else if (token != null) {
-                Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-                val chooseTypeIntent = Intent(this, ChooseTypeActivity::class.java)
-                startActivity(chooseTypeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
         }
 
