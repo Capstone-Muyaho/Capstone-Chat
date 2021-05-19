@@ -3,7 +3,6 @@ package com.example.capstone_frontend
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
@@ -69,19 +68,14 @@ class LogInActivity : AppCompatActivity() {
                             db.child(id).child("nickname").get().addOnSuccessListener {
                                 val nickName = it.value.toString()
 
-                                if (type == "P" && nickName != null) {
-                                    val parentIntent = Intent(this, ParentMainActivity::class.java)
-                                    parentIntent.putExtra("type", type)
-                                    parentIntent.putExtra("nickName", nickName)
-                                    startActivity(parentIntent)
-                                } else if (type == "C" && nickName != null) {
-                                    val childIntent = Intent(this, ChildMainActivity::class.java)
-                                    childIntent.putExtra("type", type)
-                                    childIntent.putExtra("nickName", nickName)
-                                    startActivity(childIntent)
+                                if (type == "P" || type == "C" && nickName != null) {
+                                    val homeIntent = Intent(this, MainHomeActivity::class.java)
+                                    homeIntent.putExtra("type", type)
+                                    homeIntent.putExtra("nickName", nickName)
+                                    startActivity(homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                                 } else {
                                     val intent = Intent(this, ChooseTypeActivity::class.java)
-                                    startActivity(intent)
+                                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                                 }
                             }.addOnFailureListener {
                                 Log.e("firebase", "Error getting data", it)

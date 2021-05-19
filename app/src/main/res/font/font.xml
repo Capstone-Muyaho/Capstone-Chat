@@ -2,26 +2,17 @@
 
 <font-family xmlns:android="http://schemas.android.com/apk/res/android">
     <font
-        android:font="@font/gyeonggi_title_v_bold"
-        android:fontStyle="normal"
-        android:fontWeight="400" />
-    <font
-        android:font="@font/gyeonggi_title_bold"
+        android:font="@font/omnigulim_30"
         android:fontStyle="normal"
         android:fontWeight="400" />
 
     <font
-        android:font="@font/gyeonggi_title_medium"
+        android:font="@font/omnigulim_40"
         android:fontStyle="normal"
         android:fontWeight="400" />
 
     <font
-        android:font="@font/gyeonggi_batang_regular"
-        android:fontStyle="normal"
-        android:fontWeight="400" />
-
-    <font
-        android:font="@font/gyeonggi_batang_bold"
+        android:font="@font/omnigulim_50"
         android:fontStyle="normal"
         android:fontWeight="400" />
 

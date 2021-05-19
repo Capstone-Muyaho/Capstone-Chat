@@ -43,16 +43,11 @@ class IntroActivity : AppCompatActivity() {
                             db.child(id).child("nickname").get().addOnSuccessListener {
                                 val nickName = it.value.toString()
 
-                                if (type == "P" && nickName != null) {
-                                    val parentIntent = Intent(this, ParentMainActivity::class.java)
-                                    parentIntent.putExtra("type", type)
-                                    parentIntent.putExtra("nickName", nickName)
-                                    startActivity(parentIntent)
-                                } else if (type == "C" && nickName != null) {
-                                    val childIntent = Intent(this, ChildMainActivity::class.java)
-                                    childIntent.putExtra("type", type)
-                                    childIntent.putExtra("nickName", nickName)
-                                    startActivity(childIntent)
+                                if (type == "P" || type == "C" && nickName != null) {
+                                    val homeIntent = Intent(this, MainHomeActivity::class.java)
+                                    homeIntent.putExtra("type", type)
+                                    homeIntent.putExtra("nickName", nickName)
+                                    startActivity(homeIntent)
                                 } else {
                                     handler.postDelayed({
                                         val intent = Intent(applicationContext, LogInActivity::class.java)

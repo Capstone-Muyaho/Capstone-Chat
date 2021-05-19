@@ -20,11 +20,12 @@
         android:roundIcon="@mipmap/ic_hyojason_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CapstoneFrontend">
-        <activity android:name=".FriendListActivity"></activity>
-        <activity android:name=".AddFriendsActivity" />
+        <activity android:name=".FriendRequestActivity"></activity>
+        <activity android:name=".FriendListActivity" />
+        <activity android:name=".AddFriendActivity" />
         <activity android:name=".SnaptalkActivity" />
         <activity android:name=".ChildMainActivity" />
-        <activity android:name=".ParentMainActivity" />
+        <activity android:name=".MainHomeActivity" />
         <activity android:name=".MyProfileActivity" />
         <activity android:name=".LogInActivity" />
         <activity android:name=".ChooseTypeActivity" />

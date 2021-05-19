@@ -40,10 +40,10 @@ class MyProfileActivity : AppCompatActivity() {
             else -> Log.d("type", "부모-자녀 타입 입력 오류")
         }
 
-        tvNickName.text = "닉네임: ${nickName}"
+        tvNickName.text = "${nickName}"
 
         btn_intent_add_friend.setOnClickListener() {
-            val friendIntent = Intent(this, AddFriendsActivity::class.java)
+            val friendIntent = Intent(this, AddFriendActivity::class.java)
             startActivity(friendIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
         }
 
@@ -53,9 +53,11 @@ class MyProfileActivity : AppCompatActivity() {
                     Toast.makeText(this, "로그아웃 실패 $error", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, "로그아웃 성공", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, IntroActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                    finish()
                 }
-                val intent = Intent(this, IntroActivity::class.java)
-                startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
             }
         }
 
@@ -69,7 +71,9 @@ class MyProfileActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "회원 탈퇴 성공", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, IntroActivity::class.java)
-                    startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                    finish()
                 }
             }
         }

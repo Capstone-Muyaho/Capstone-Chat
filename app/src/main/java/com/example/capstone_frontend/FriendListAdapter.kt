@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class FriendListAdapter(val friendList: ArrayList<FriendInformation>) : RecyclerView.Adapter<FriendListAdapter.CustomViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendListAdapter.CustomViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return CustomViewHolder(view).apply {

@@ -8,8 +8,6 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_type.*
 
@@ -19,9 +17,10 @@ class ChooseTypeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_type)
 
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val userReference: DatabaseReference = database.getReference("users")
         var type: String
         var nickName: String
-
         var userSearchList = ArrayList<User>()
         var nickSearch: User? = null
         var position = 0
@@ -56,11 +55,10 @@ class ChooseTypeActivity : AppCompatActivity() {
                         nickName = edit_nickname.text.toString()
 
                         if (nickName.equals("")) {
-                            Toast.makeText(this, "닉네임을 입력하세요.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "별명을 입력하세요.", Toast.LENGTH_SHORT).show()
+                        } else if(nickName == "Waiting") {
+                            Toast.makeText(this, "사용할 수 없는 별명입니다.", Toast.LENGTH_SHORT).show()
                         } else {
-                            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-                            val userReference: DatabaseReference = database.getReference("users")
-
                             userReference.addValueEventListener(object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     userSearchList.clear()
@@ -70,8 +68,6 @@ class ChooseTypeActivity : AppCompatActivity() {
                                     for (i: DataSnapshot in snapshot.children) {
                                         nickSearch = i.getValue(User::class.java)
                                         userSearchList.add(nickSearch!!)
-
-                                        Log.d("로그", userSearchList[position].nickname.toString())
 
                                         if (nickName == userSearchList[position].nickname.toString() && id != userSearchList[position].userid.toString()) {
                                             Toast.makeText(this@ChooseTypeActivity, "이미 존재하는 닉네임 입니다.", Toast.LENGTH_SHORT).show()
@@ -83,10 +79,10 @@ class ChooseTypeActivity : AppCompatActivity() {
                                     if (!isUserCheck) {
                                         writeNewUser(id, nickName, email, type, ageRange, userReference)
 
-                                        val parentIntent = Intent(this@ChooseTypeActivity,ParentMainActivity::class.java)
-                                        parentIntent.putExtra("type", type)
-                                        parentIntent.putExtra("nickName", nickName)
-                                        startActivity(parentIntent)
+                                        val homeIntent = Intent(this@ChooseTypeActivity, MainHomeActivity::class.java)
+                                        homeIntent.putExtra("type", type)
+                                        homeIntent.putExtra("nickName", nickName)
+                                        startActivity(homeIntent)
                                     }
                                 }
 
@@ -106,10 +102,9 @@ class ChooseTypeActivity : AppCompatActivity() {
 
                         if (nickName.equals("")) {
                             Toast.makeText(this, "닉네임을 입력하세요.", Toast.LENGTH_SHORT).show()
-                        } else {
-                            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-                            val userReference: DatabaseReference = database.getReference("users")
+                        } else if(nickName == "") {
 
+                        } else {
                             userReference.addValueEventListener(object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     userSearchList.clear()
@@ -119,8 +114,6 @@ class ChooseTypeActivity : AppCompatActivity() {
                                     for (i: DataSnapshot in snapshot.children) {
                                         nickSearch = i.getValue(User::class.java)
                                         userSearchList.add(nickSearch!!)
-
-                                        Log.d("로그", userSearchList[position].nickname.toString())
 
                                         if (nickName == userSearchList[position].nickname.toString() && id != userSearchList[position].userid.toString()) {
                                             Toast.makeText(this@ChooseTypeActivity, "이미 존재하는 닉네임 입니다.", Toast.LENGTH_SHORT ).show()
@@ -132,10 +125,10 @@ class ChooseTypeActivity : AppCompatActivity() {
                                     if (!isUserCheck) {
                                         writeNewUser(id, nickName, email, type, ageRange, userReference)
 
-                                        val childIntent = Intent(this@ChooseTypeActivity, ChildMainActivity::class.java)
-                                        childIntent.putExtra("type", type)
-                                        childIntent.putExtra("nickName", nickName)
-                                        startActivity(childIntent)
+                                        val homeIntent = Intent(this@ChooseTypeActivity, MainHomeActivity::class.java)
+                                        homeIntent.putExtra("type", type)
+                                        homeIntent.putExtra("nickName", nickName)
+                                        startActivity(homeIntent)
                                     }
                                 }
 

@@ -7,5 +7,6 @@ data class User(val userid: String? = null,
                 val nickname: String? = null,
                 val kakaoemail: String? = null,
                 val type: String? = null,
-                val agerange: String? = null) {
+                val agerange: String? = null,
+                val friend: String? = null) {
 }
