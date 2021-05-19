@@ -4,33 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/myinfo2"
+    android:background="@drawable/myprofile"
     tools:context=".MyProfileActivity">
 
-    <TextView
-        android:id="@+id/menu"
-        android:layout_width="350dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="90dp"
-        android:layout_marginBottom="347dp"
-        android:fontFamily="@font/gyeonggi_batang_bold"
-        android:gravity="center_horizontal"
-        android:text="내 정보"
-        android:textSize="50sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.036" />
 
     <TextView
         android:id="@+id/tv_nickname"
         android:layout_width="320dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="222dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="324dp"
         android:fontFamily="@font/gyeonggi_title_medium"
         android:text="닉네임 : "
-        android:textSize="30sp"
+        android:textSize="40sp"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -39,59 +24,50 @@
     <TextView
         android:id="@+id/tv_type"
         android:layout_width="320dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="35dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/gyeonggi_title_medium"
         android:text="유형 : "
-        android:textSize="30sp"
+        android:textSize="40sp"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_nickname" />
 
-
-    <Button
+    <ImageButton
         android:id="@+id/btn_intent_add_friend"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="60dp"
-        android:backgroundTint="#97A884"
-        android:fontFamily="@font/gyeonggi_title_medium"
-        android:text="친구추가"
-        android:textColor="#E7C794"
-        android:textSize="30sp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="4dp"
+        android:src="@drawable/addfriend1"
         app:layout_constraintBottom_toTopOf="@+id/btn_kakao_logout"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_kakao_logout"
-        android:layout_width="350dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="#97A884"
-        android:fontFamily="@font/gyeonggi_title_medium"
-        android:text="로그아웃"
-        android:textColor="#E7C794"
-        android:textSize="25sp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/logout1"
         app:layout_constraintBottom_toTopOf="@+id/btn_kakao_unlink"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:id="@+id/btn_kakao_unlink"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#0097A884"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/white"
         android:fontFamily="@font/gyeonggi_title_medium"
         android:text="회원 탈퇴"
-        android:textColor="#E7C794"
+        android:textColor="#50574a"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 

@@ -31,18 +31,7 @@ class MyFirebaseInstanceIDService : FirebaseInstanceIdService() {
     /**
      * token 값을 서버에 등록할 때 사용  */
     private fun sendRegistrationToServer(token: String?) {
-        val db: DatabaseReference = Firebase.database.getReference("users")
 
-        UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
-            if (tokenInfo != null) {
-                UserApiClient.instance.me { user, error ->
-                    if (user != null) {
-                        val id = user.id.toString()
-                        db.child(id).child("token").setValue(token)
-                    }
-                }
-            }
-        }
     }
 
     companion object {

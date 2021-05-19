@@ -5,47 +5,40 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/myinfo1"
+    android:background="@drawable/newback"
     tools:context=".SnaptalkActivity">
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_chat"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:backgroundTint="#97A884"
-        android:fontFamily="@font/gyeonggi_title_medium"
-        android:text="채팅방 입장"
-        android:textColor="#E7C794"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="360dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/chat"
+        app:layout_constraintBottom_toTopOf="@+id/btn_camera"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_camera"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#97A884"
-        android:text="카메라 촬영"
-        android:textColor="#E7C794"
-        android:textSize="30sp"
-        android:fontFamily="@font/gyeonggi_title_medium"
+        android:layout_width="360dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/camera_l"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/img_picture"
-        android:layout_width="298dp"
-        android:layout_height="457dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_camera"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="194dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.542"
-        app:srcCompat="@drawable/green" />
+        app:srcCompat="@drawable/logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

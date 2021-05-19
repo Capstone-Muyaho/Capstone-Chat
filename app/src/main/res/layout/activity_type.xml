@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/myinfo1"
+    android:background="@drawable/newback"
     android:gravity="top|bottom"
     android:weightSum="2"
     tools:context=".ChooseTypeActivity">
@@ -11,9 +11,9 @@
     <ImageView
         android:id="@+id/img_grandpa"
         android:layout_width="180dp"
-        android:layout_height="370dp"
+        android:layout_height="300dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="120dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/buttonline"
@@ -23,9 +23,9 @@
     <ImageView
         android:id="@+id/img_daughter"
         android:layout_width="200dp"
-        android:layout_height="370dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="300dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="120dp"
         android:layout_marginRight="15dp"
         android:layout_toRightOf="@id/img_grandpa"
         android:layout_weight="1"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="485dp"
         android:gravity="center"
-        android:text="유형 설정"
+        android:text="선택해주세요."
         android:textColor="#FF607F"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -85,7 +85,7 @@
         android:singleLine="true"
         android:textSize="40sp" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -93,9 +93,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="10dp"
-        android:backgroundTint="#97A884"
-        android:text="전송"
-        android:textColor="#E7C794"
-        android:textSize="20dp" />
+        android:src="@drawable/nextbtn" />
 
 </RelativeLayout>

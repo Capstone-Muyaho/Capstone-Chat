@@ -83,10 +83,10 @@ class ChooseTypeActivity : AppCompatActivity() {
                                     if (!isUserCheck) {
                                         writeNewUser(id, nickName, email, type, ageRange, userReference)
 
-                                        val childIntent = Intent(this@ChooseTypeActivity,ChildMainActivity::class.java)
-                                        childIntent.putExtra("type", type)
-                                        childIntent.putExtra("nickName", nickName)
-                                        startActivity(childIntent)
+                                        val parentIntent = Intent(this@ChooseTypeActivity,ParentMainActivity::class.java)
+                                        parentIntent.putExtra("type", type)
+                                        parentIntent.putExtra("nickName", nickName)
+                                        startActivity(parentIntent)
                                     }
                                 }
 
