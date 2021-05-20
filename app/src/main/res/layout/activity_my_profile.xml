@@ -13,9 +13,9 @@
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_marginTop="324dp"
-        android:fontFamily="@font/omnigulim_40"
+        android:fontFamily="@font/omnigulim_30"
         android:gravity="center_horizontal"
-        android:textColor="@color/black"
+        android:textColor="#50574a"
         android:textSize="40sp"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -27,9 +27,9 @@
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/omnigulim_50"
+        android:fontFamily="@font/omnigulim_30"
         android:gravity="center_horizontal"
-        android:textColor="@color/black"
+        android:textColor="#50574a"
         android:textSize="40sp"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -37,21 +37,10 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_nickname" />
 
     <ImageButton
-        android:id="@+id/btn_intent_add_friend"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="4dp"
-        android:src="@drawable/addfriend1"
-        app:layout_constraintBottom_toTopOf="@+id/btn_kakao_logout"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <ImageButton
         android:id="@+id/btn_kakao_logout"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="24dp"
         android:src="@drawable/logout1"
         app:layout_constraintBottom_toTopOf="@+id/btn_kakao_unlink"
         app:layout_constraintLeft_toLeftOf="parent"

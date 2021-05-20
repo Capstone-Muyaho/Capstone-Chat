@@ -1,102 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/newback"
-    android:gravity="top|bottom"
-    android:weightSum="2"
     tools:context=".ChooseTypeActivity">
 
     <ImageView
         android:id="@+id/img_grandpa"
         android:layout_width="180dp"
         android:layout_height="300dp"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="120dp"
-        android:layout_weight="1"
-        android:adjustViewBounds="true"
         android:background="@drawable/buttonline"
         android:scaleType="fitCenter"
-        android:src="@drawable/grandfather" />
+        android:src="@drawable/grandfather"
+        app:layout_constraintEnd_toStartOf="@+id/img_daughter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/img_daughter"
         android:layout_width="200dp"
         android:layout_height="300dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="120dp"
-        android:layout_marginRight="15dp"
         android:layout_toRightOf="@id/img_grandpa"
-        android:layout_weight="1"
-        android:adjustViewBounds="true"
         android:background="@drawable/buttonline"
         android:scaleType="fitCenter"
-        android:src="@drawable/mother" />
+        android:src="@drawable/mother"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_grandpa"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="485dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/omnigulim_30"
         android:gravity="center"
         android:text="선택해주세요."
         android:textColor="#FF607F"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/edit_nickname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/type_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="430dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:orientation="horizontal"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:paddingRight="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/btn_grandpa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/omnigulim_30"
             android:text="부모"
             android:textColor="#53584C"
             android:textSize="40sp"
-            android:textStyle="bold" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_grandpa" />
 
         <RadioButton
             android:id="@+id/btn_daughter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/omnigulim_30"
             android:text="자녀"
             android:textColor="#53584C"
             android:textSize="40sp"
-            android:textStyle="bold" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_daughter" />
     </RadioGroup>
 
     <EditText
         android:id="@+id/edit_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="535dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/omnigulim_30"
         android:gravity="center"
         android:hint="별명을 입력해주세요."
         android:maxLength="10"
         android:singleLine="true"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_nickname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/btn_nickname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edit_nickname"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/nextbtn" />
+        android:layout_width="401dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="4dp"
+        android:src="@drawable/nextbtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

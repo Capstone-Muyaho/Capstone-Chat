@@ -1,3 +1,3 @@
 package com.example.capstone_frontend
 
-class FriendInformation(val gender: Int, val nickname: String, val profiletype: String)
+class FriendInformation(val nickname: String, val profiletype: String)
