@@ -8,5 +8,6 @@ data class User(val userid: String? = null,
                 val kakaoemail: String? = null,
                 val type: String? = null,
                 val agerange: String? = null,
-                val friend: String? = null) {
+                val friend: String? = null,
+                val chatroom: String? = null) {
 }

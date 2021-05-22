@@ -22,8 +22,8 @@ class FriendRequestActivity : AppCompatActivity() {
         setContentView(R.layout.activity_friend_request)
 
         val db: DatabaseReference = Firebase.database.getReference("users")
-        var friendSearchList = ArrayList<User>()
-        var friendSearch: User? = null
+        var userSearchList = ArrayList<User>()
+        var userSearch: User? = null
         var index = 0
 
         UserApiClient.instance.me { user, error ->
@@ -34,19 +34,19 @@ class FriendRequestActivity : AppCompatActivity() {
 
                 db.child(id).child("nickname").get().addOnSuccessListener {
                     val myName = it.value.toString()
-                    db.child(id).child("friend").get().addOnSuccessListener {
-                        val myFriendValue = it.value.toString()
+                    db.child(id).child("type").get().addOnSuccessListener {
+                        val myType = it.value.toString()
 
                         db.addValueEventListener(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
-                                friendSearchList.clear()
+                                userSearchList.clear()
 
                                 for (i: DataSnapshot in snapshot.children) {
-                                    friendSearch = i.getValue(User::class.java)
-                                    friendSearchList.add(friendSearch!!)
+                                    userSearch = i.getValue(User::class.java)
+                                    userSearchList.add(userSearch!!)
 
-                                    if (myName == friendSearchList[index].friend.toString()) {
-                                        val friendName = friendSearchList[index].nickname.toString()
+                                    if (myName == userSearchList[index].friend.toString()) {
+                                        val friendName = userSearchList[index].nickname.toString()
                                         tv_friend_nickname.text = friendName
                                         tv_phrase1.text = "님에게서"
                                         tv_phrase2.text = "친구요청이 왔습니다."
@@ -54,13 +54,24 @@ class FriendRequestActivity : AppCompatActivity() {
                                         btn_accept.setOnClickListener {
                                             db.child(id).child("friend").setValue(friendName)
                                             Toast.makeText(this@FriendRequestActivity, "친구 요청을 수락하였습니다.", Toast.LENGTH_LONG).show()
+
+                                            if (myType == "P") {
+                                                val chatRoom = myName + "-" + userSearchList[index].nickname
+                                                db.child(id).child("chatroom").setValue(chatRoom)
+                                                db.child(userSearchList[index].userid.toString()).child("chatroom").setValue(chatRoom)
+                                            } else { // myType == "C"
+                                                val chatRoom = userSearchList[index].nickname + "-" + myName
+                                                db.child(id).child("chatroom").setValue(chatRoom)
+                                                db.child(userSearchList[index].userid.toString()).child("chatroom").setValue(chatRoom)
+                                            }
+
                                             val intent = Intent(this@FriendRequestActivity, FriendListActivity::class.java)
                                             startActivity(intent.addFlags(FLAG_ACTIVITY_SINGLE_TOP))
                                         }
 
                                         btn_reject.setOnClickListener {
                                             db.child(id).child("friend").setValue(null)
-                                            db.child(friendSearchList[index].userid.toString()).child("friend").setValue(null)
+                                            db.child(userSearchList[index].userid.toString()).child("friend").setValue(null)
                                             Toast.makeText(this@FriendRequestActivity, "친구 요청을 거절하였습니다.", Toast.LENGTH_LONG).show()
                                             val intent = Intent(this@FriendRequestActivity, FriendListActivity::class.java)
                                             startActivity(intent.addFlags(FLAG_ACTIVITY_SINGLE_TOP))

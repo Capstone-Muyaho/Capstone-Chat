@@ -35,51 +35,83 @@ class AddFriendActivity : AppCompatActivity() {
                     val myName = it.value.toString()
                     db.child(id).child("friend").get().addOnSuccessListener {
                         val myFriend = it.value.toString()
+                        db.child(id).child("type").get().addOnSuccessListener {
+                            val myType = it.value.toString()
+                            db.child(id).child("chatroom").get().addOnSuccessListener {
+                                val myChat = it.value.toString()
 
-                        btn_add_friend.setOnClickListener() {
-                            val friendName = edit_add_friend.text.toString()
+                                btn_add_friend.setOnClickListener() {
+                                    val friendName = edit_add_friend.text.toString()
 
-                            if (friendName == "") {
-                                Toast.makeText(this, "친구의 별명을 입력해주세요.", Toast.LENGTH_SHORT).show()
-                            } else {
-                                db.addValueEventListener(object : ValueEventListener {
-                                    override fun onDataChange(snapshot: DataSnapshot) {
-                                        userSearchList.clear()
-                                        index = 0
+                                    if (friendName == "") {
+                                        Toast.makeText(this, "친구의 별명을 입력해주세요.", Toast.LENGTH_SHORT)
+                                            .show()
+                                    } else {
+                                        db.addValueEventListener(object : ValueEventListener {
+                                            override fun onDataChange(snapshot: DataSnapshot) {
+                                                userSearchList.clear()
+                                                index = 0
 
-                                        for (i: DataSnapshot in snapshot.children) {
-                                            userSearch = i.getValue(User::class.java)
-                                            userSearchList.add(userSearch!!)
+                                                for (i: DataSnapshot in snapshot.children) {
+                                                    userSearch = i.getValue(User::class.java)
+                                                    userSearchList.add(userSearch!!)
 
-                                            if (myName == userSearchList[index].friend.toString() && myFriend == "Waiting") { // 상대방이 이미 친구 신청을 한 경우
-                                                db.child(id).child("friend").setValue(friendName)
-                                                Toast.makeText(this@AddFriendActivity, "친구 신청이 완료되었습니다.", Toast.LENGTH_SHORT).show()
-                                                edit_add_friend.getText().clear()
-                                                isUserCheck = true
-                                                break
-                                            } else if (friendName == userSearchList[index].nickname.toString()){
-                                                db.child(userSearchList[index].userid.toString()).child("friend").setValue("Waiting")
-                                                db.child(id).child("friend").setValue(friendName)
-                                                Toast.makeText(this@AddFriendActivity, "친구 신청이 완료 되었습니다.", Toast.LENGTH_SHORT).show()
-                                                edit_add_friend.getText().clear()
-                                                isUserCheck = true
-                                                break
-                                            } else if(myFriend == userSearchList[index].nickname.toString() && myName == userSearchList[index].friend.toString()) {
-                                                Toast.makeText(this@AddFriendActivity, "이미 친구인 사람입니다.", Toast.LENGTH_SHORT).show()
-                                                break
+                                                    if (myChat != null || userSearchList[index].chatroom.toString() != null) {
+                                                        Toast.makeText(this@AddFriendActivity, "올바르지 않은 요청입니다.", Toast.LENGTH_SHORT).show()
+                                                        break
+                                                    }
+
+                                                        if (myName == userSearchList[index].friend.toString() && myFriend == "Waiting") { // 상대방이 이미 친구 신청을 한 경우
+                                                            db.child(id).child("friend").setValue(friendName)
+                                                            Toast.makeText(this@AddFriendActivity, "친구 신청이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+
+                                                            if (myType == "P") {
+                                                                val chatRoom = myName + "-" + userSearchList[index].nickname
+                                                                db.child(id).child("chatroom").setValue(chatRoom)
+                                                                db.child(userSearchList[index].userid.toString()).child("chatroom").setValue(chatRoom)
+                                                            } else { // myType == "C"
+                                                                val chatRoom = userSearchList[index].nickname + "-" + myName
+                                                                db.child(id).child("chatroom").setValue(chatRoom)
+                                                                db.child(userSearchList[index].userid.toString()).child("chatroom").setValue(chatRoom)
+                                                            }
+
+                                                            edit_add_friend.getText().clear()
+                                                            isUserCheck = true
+                                                            break
+                                                        } else if (friendName == userSearchList[index].nickname.toString()) {
+                                                            db.child(userSearchList[index].userid.toString()).child("friend").setValue("Waiting")
+                                                            db.child(id).child("friend").setValue(friendName)
+                                                            Toast.makeText(this@AddFriendActivity, "친구 신청이 완료 되었습니다.", Toast.LENGTH_SHORT).show()
+
+                                                            edit_add_friend.getText().clear()
+                                                            isUserCheck = true
+                                                            break
+                                                        } else if (myFriend == userSearchList[index].nickname.toString() && myName == userSearchList[index].friend.toString()) {
+                                                            Toast.makeText(this@AddFriendActivity, "이미 친구인 사람입니다.", Toast.LENGTH_SHORT).show()
+                                                            break
+                                                        }
+                                                    index++
+                                                }
+
+                                                if (!isUserCheck) {
+                                                    Toast.makeText(
+                                                        this@AddFriendActivity,
+                                                        "존재하지 않는 별명입니다.",
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }
                                             }
-                                            index++
-                                        }
 
-                                        if (!isUserCheck) {
-                                            Toast.makeText(this@AddFriendActivity, "존재하지 않는 별명입니다.", Toast.LENGTH_SHORT).show()
-                                        }
+                                            override fun onCancelled(error: DatabaseError) {
+                                                Toast.makeText(
+                                                    this@AddFriendActivity,
+                                                    "Friends 읽어오기 실패.",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
+                                        })
                                     }
-
-                                    override fun onCancelled(error: DatabaseError) {
-                                        Toast.makeText(this@AddFriendActivity, "Friends 읽어오기 실패.", Toast.LENGTH_SHORT).show()
-                                    }
-                                })
+                                }
                             }
                         }
                     }
