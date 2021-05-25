@@ -31,6 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -52,6 +55,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx' // Realtime Dataase library
     implementation 'com.google.firebase:firebase-messaging:21.0.1' // Firebase Cloud Messaging module
     implementation 'gun0912.ted:tedpermission:2.2.3' // 권한 판업 구현
+    //kapt "com.android.databinding:compiler:6.5"
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+   // kapt "android.arch.lifecycle:compiler:1.0.0"
+   // kapt 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'com.github.nkzawa:socket.io-client:0.3.0'
 }
 
 apply plugin: 'com.android.application'

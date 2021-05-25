@@ -1,7 +1,9 @@
 package com.example.capstone_frontend
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -12,6 +14,8 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
@@ -22,21 +26,55 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+import com.example.capstone_frontend.databinding.ActivityMainBinding
 
 class SnaptalkActivity : AppCompatActivity() {
 
     val REQUEST_IMAGE_CAPTURE = 1 // 카메라 사진 촬영 요청 코드
     lateinit var curPhotoPath: String // 사진 경로 값
 
+    private var binding: ActivityMainBinding? = null
+    private val REQUEST_EXTERNAL_STORAGE = 200
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.getRoot())
+
         setContentView(R.layout.activity_snaptalk)
+
+        val PERMISSIONS_STORAGE = arrayOf(
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+        val readPermission = ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+        if (readPermission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE)
+        }
+        initUI()
 
         setPermission() // 최초 권한 체크
 
         btn_camera.setOnClickListener {
             takeCapture() // 기본 카메라 앱 실행하여 사진 촬영
         }
+
+        btn_chat.setOnClickListener {
+
+        }
+    }
+
+    private fun initUI() {
+        // 다크 모드 비활성화
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        binding.enterBtn.setOnClickListener({ v ->
+            val intent = Intent(applicationContext, ChatActivity::class.java)
+            intent.putExtra("username", binding.usernameEdit.getText().toString())
+            intent.putExtra("roomNumber", binding.roomEdit.getText().toString())
+            startActivity(intent)
+        })
     }
 
     private fun takeCapture() { // 카메라 촬영

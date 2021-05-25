@@ -7,6 +7,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 카메라 접근 권한 -->
     <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- 전화 걸기 권한 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- socket 관련 권한 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- socket 관련 권한 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- socket 관련 권한 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- socket 관련 권한 -->
     <!-- <uses-permission android:name="android.permission.READ_CONTACTS" /> 전화번호 읽기 권한 -->
     <uses-feature
         android:name="android.hardware.camera"
@@ -20,7 +24,8 @@
         android:roundIcon="@mipmap/ic_hyojason_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CapstoneFrontend">
-
+        <activity android:name=".TmpActivity"></activity>
+        <activity android:name=".ChatActivity" />
         <activity android:name=".FriendRequestActivity" />
         <activity android:name=".FriendListActivity" />
         <activity android:name=".AddFriendActivity" />
